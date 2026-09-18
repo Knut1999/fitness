@@ -15,13 +15,13 @@ class GenerateReport:
         result += (f"FITNESS SESSION REPORT {self.i}\n")
         result += (f"{'=' * 50}\n")
         result += (f"\n")
-        result += (f"Navn: {self.participant.name} \n")
+        result += (f"Name: {self.participant.name} \n")
         result += (f"Reference ID: {self.participant.profile['participant_id']}") + "\n"
-        result += (f"Baseline heart_rate: {self.participant.profile['baseline_heart_rate']}bpm") + "\n"
-        result += (f"Baseline skin response : {self.participant.profile['baseline_skin_response']}") + "\n"
+        result += (f"Baseline heart rate: {self.participant.profile['baseline_heart_rate']} bpm") + "\n"
+        result += (f"Baseline skin response: {self.participant.profile['baseline_skin_response']}") + "\n"
         result += (f"Baseline temperature: {self.participant.profile['baseline_temperature']}°C") + "\n"
         result += f"Number of windows: {self.participant.number_of_windows} \n"
-        result += f"Session classification: {self.participant.scenario} (This is the one used in data_generator)\n"
+        result += f"Session classification: {self.participant.scenario} (This is the one used in DataGenerator)\n"
         result += f"Session classification: {self.sessionClassifyer.classification} (This is the one we found by analyzing the numbers)\n"
         result += "\n"
 
@@ -35,21 +35,21 @@ class GenerateReport:
         result += (f"{'=' * 50}\n")
         result += (f"RECOVERY \n")
         result += (f"{'=' * 50} \n")
-        if(self.dataHandler.heart_rate_summaryBeginning["Invalid measurements"] != 0 or self.dataHandler.heart_rate_summaryEnd["Invalid measurements"]):
-            result += f"Can not check the recovery because of invalid messurements in the beginning/end \n"
+        if(self.dataHandler.heart_rate_summaryBeginning["Invalid measurements"] != 0 or self.dataHandler.heart_rate_summaryEnd["Invalid measurements"] != 0):
+            result += f"Cannot check the recovery because of invalid measurements in the beginning/end \n"
         else:
-            result += f"Heart rate avg in the first 3 messurements: {self.dataHandler.heart_rate_summaryBeginning["Average"]} \n"
-            result += f"Heart rate avg in the last 3 messurements: {self.dataHandler.heart_rate_summaryEnd["Average"]} \n"
+            result += f"Heart rate average in the first half: {self.dataHandler.heart_rate_summaryBeginning["Average"]} \n"
+            result += f"Heart rate average in the last half: {self.dataHandler.heart_rate_summaryEnd["Average"]} \n"
             if(self.dataHandler.heart_rate_summaryBeginning["Average"] > self.dataHandler.heart_rate_summaryEnd["Average"]):
                 result += "Heart rate did recover well near the end \n"
             else:
                 result += "Heart rate did not recover well near the end \n"
 
-        if(self.dataHandler.activity_level_summaryBeginning["Invalid measurements"] != 0 or self.dataHandler.activity_level_summaryEnd["Invalid measurements"]):
-            result += f"Can not check the recovery because of invalid messurements in the beginning/end \n"
+        if(self.dataHandler.activity_level_summaryBeginning["Invalid measurements"] != 0 or self.dataHandler.activity_level_summaryEnd["Invalid measurements"] != 0):
+            result += f"Cannot check the recovery because of invalid measurements in the beginning/end \n"
         else:
-            result += f"Activity level in the first 3 messurements: {self.dataHandler.activity_level_summaryBeginning["Average"]} \n"
-            result += f"Activity level in the last 3 messurements: {self.dataHandler.activity_level_summaryEnd["Average"]} \n"
+            result += f"Activity level average in the first half: {self.dataHandler.activity_level_summaryBeginning["Average"]} \n"
+            result += f"Activity level average in the last half: {self.dataHandler.activity_level_summaryEnd["Average"]} \n"
             if(self.dataHandler.activity_level_summaryBeginning["Average"] > self.dataHandler.activity_level_summaryEnd["Average"]):
                 result += "Activity level did recover well near the end"
             else:

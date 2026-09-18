@@ -24,6 +24,5 @@ class Fitness:
             # Generate report
             i += 1
             generateReport = GenerateReport(dataHandler, sessionClassifyer, i)
-            print(generateReport)
 
-        
+            print(generateReport)
