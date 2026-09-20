@@ -47,6 +47,7 @@ def userInputWindow():
 
     return number_of_windows
 
+#values er liste med tall og i er 
 def calculate_summary(values, i):
     if len(values) > 0:
         return {
